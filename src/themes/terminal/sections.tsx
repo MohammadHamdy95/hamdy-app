@@ -1,4 +1,4 @@
-import resume from "../data/resume.json";
+import resume from "../../data/resume.json";
 
 /**
  * Pure presentational section blocks, rendered from the data layer.

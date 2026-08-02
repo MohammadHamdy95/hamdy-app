@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import resume from "../data/resume.json";
-import apps from "../data/apps.json";
+import resume from "../../data/resume.json";
+import apps from "../../data/apps.json";
 
 const TYPE_MS = 34;
 const PAUSE_MS = 260;
