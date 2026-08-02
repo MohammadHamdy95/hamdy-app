@@ -2,17 +2,17 @@ import type { Metadata } from "next";
 import { FlowDiagram, ProjectPage } from "../../../themes/serif/ProjectPage";
 
 export const metadata: Metadata = {
-  title: "s.hamdy.app — architecture",
+  title: "tiny.hamdy.app — architecture",
   description:
-    "Architecture and design of s.hamdy.app, an anonymous URL shortener built on Spring Boot and DynamoDB.",
+    "Architecture and design of tiny.hamdy.app, an anonymous URL shortener built on Spring Boot and DynamoDB.",
 };
 
 export default function ShortenerArchitecture() {
   return (
     <ProjectPage
-      name="s.hamdy.app"
+      name="tiny.hamdy.app"
       tagline="An anonymous URL shortener — paste a long link, share a short one."
-      liveUrl="https://s.hamdy.app"
+      liveUrl="https://tiny.hamdy.app"
       overview={
         <>
           <p>
@@ -55,6 +55,12 @@ export default function ShortenerArchitecture() {
         { method: "GET", path: "/api/v1/links/{slug}", what: "Link details and click stats" },
         { method: "GET", path: "/{slug}", what: "302 redirect to the original URL" },
         { method: "GET", path: "/api/v1/health", what: "Liveness probe" },
+      ]}
+      contractUrl="https://github.com/MohammadHamdy95/tiny-backend/blob/main/api/openapi.yaml"
+      repos={[
+        { what: "backend", label: "MohammadHamdy95/tiny-backend", url: "https://github.com/MohammadHamdy95/tiny-backend" },
+        { what: "frontend", label: "MohammadHamdy95/tiny-frontend", url: "https://github.com/MohammadHamdy95/tiny-frontend" },
+        { what: "infra", label: "MohammadHamdy95/hamdy-infra", url: "https://github.com/MohammadHamdy95/hamdy-infra" },
       ]}
     />
   );

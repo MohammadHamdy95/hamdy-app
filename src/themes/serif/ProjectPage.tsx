@@ -12,6 +12,12 @@ export interface StackRow {
   detail: string;
 }
 
+export interface RepoLink {
+  label: string;
+  url: string;
+  what: string;
+}
+
 /** Shared shell for the per-project architecture pages (serif theme). */
 export function ProjectPage({
   name,
@@ -22,6 +28,8 @@ export function ProjectPage({
   diagramCaption,
   stack,
   endpoints,
+  repos,
+  contractUrl,
 }: {
   name: string;
   tagline: string;
@@ -31,6 +39,8 @@ export function ProjectPage({
   diagramCaption: string;
   stack: StackRow[];
   endpoints: Endpoint[];
+  repos: RepoLink[];
+  contractUrl: string;
 }) {
   return (
     <div className="proj-page">
@@ -86,10 +96,13 @@ export function ProjectPage({
       <section>
         <h2>API</h2>
         <p style={{ marginBottom: 18 }}>
-          Designed contract-first: an OpenAPI 3.1 spec is the source of truth,
-          written and reviewed before any implementation. Anonymous by design —
-          no auth, no accounts, no tracking. Errors follow RFC 9457 Problem
-          Details.
+          Designed contract-first: an{" "}
+          <a href={contractUrl} style={{ color: "var(--accent)" }}>
+            OpenAPI 3.1 spec
+          </a>{" "}
+          is the source of truth, written and reviewed before any
+          implementation. Anonymous by design — no auth, no accounts, no
+          tracking. Errors follow RFC 9457 Problem Details.
         </p>
         <table className="endpoints">
           <thead>
@@ -109,6 +122,24 @@ export function ProjectPage({
             ))}
           </tbody>
         </table>
+      </section>
+
+      <hr className="orn" />
+
+      <section>
+        <h2>Source</h2>
+        <ul className="stack-list">
+          {repos.map((r) => (
+            <li key={r.url}>
+              <span className="what">{r.what}</span>
+              <span>
+                <a href={r.url} style={{ color: "var(--accent)" }}>
+                  {r.label}
+                </a>
+              </span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <footer className="colophon">MOHAMMAD HAMDY · COLUMBUS, OHIO</footer>

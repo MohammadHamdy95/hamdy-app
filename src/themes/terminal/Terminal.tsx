@@ -177,7 +177,7 @@ function runCommand(cmd: string): string | null {
         window.open(app.url, "_blank");
         return `opening ${app.bin}…`;
       }
-      return `usage: open <s|paste> — e.g. \`open s\``;
+      return `usage: open <tiny|paste> — e.g. \`open tiny\``;
     }
     case "resume":
       window.open("/resume.pdf", "_blank");
@@ -237,7 +237,7 @@ function InteractivePrompt() {
       </div>
       <div className="hintbar">
         <button className="chip" onClick={() => submit("help")}>help</button>
-        <button className="chip" onClick={() => submit("open s")}>open s.hamdy.app</button>
+        <button className="chip" onClick={() => submit("open tiny")}>open tiny.hamdy.app</button>
         <button className="chip" onClick={() => submit("open paste")}>open paste.hamdy.app</button>
         <a className="chip" href="/resume.pdf">curl resume.pdf</a>
       </div>

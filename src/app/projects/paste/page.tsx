@@ -57,6 +57,12 @@ export default function PasteArchitecture() {
         { method: "GET", path: "/v1/pastes/{id}/raw", what: "Raw plain-text content" },
         { method: "GET", path: "/v1/health", what: "Liveness probe" },
       ]}
+      contractUrl="https://github.com/MohammadHamdy95/paste-backend/blob/main/api/openapi.yaml"
+      repos={[
+        { what: "backend", label: "MohammadHamdy95/paste-backend", url: "https://github.com/MohammadHamdy95/paste-backend" },
+        { what: "frontend", label: "MohammadHamdy95/paste-frontend", url: "https://github.com/MohammadHamdy95/paste-frontend" },
+        { what: "infra", label: "MohammadHamdy95/hamdy-infra", url: "https://github.com/MohammadHamdy95/hamdy-infra" },
+      ]}
     />
   );
 }

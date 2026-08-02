@@ -1,10 +1,10 @@
 [
   {
-    "bin": "s.hamdy.app",
+    "bin": "tiny.hamdy.app",
     "desc": "URL shortener — Spring Boot & DynamoDB, self-hosted",
-    "url": "https://s.hamdy.app",
+    "url": "https://tiny.hamdy.app",
     "status": "live",
-    "slug": "shortener"
+    "slug": "tiny"
   },
   {
     "bin": "paste.hamdy.app",

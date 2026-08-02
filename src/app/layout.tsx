@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mohammad Hamdy — backend engineer",
   description:
-    "Backend engineer at JPMorgan Chase, ex-Amazon. Distributed systems, Java, Spring, AWS — and the home of s.hamdy.app and paste.hamdy.app.",
+    "Backend engineer at JPMorgan Chase, ex-Amazon. Distributed systems, Java, Spring, AWS — and the home of tiny.hamdy.app and paste.hamdy.app.",
   metadataBase: new URL("https://hamdy.app"),
   openGraph: {
     title: "Mohammad Hamdy — backend engineer",
