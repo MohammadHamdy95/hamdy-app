@@ -109,27 +109,6 @@ body {
 .whoami-role { color: var(--green); margin-bottom: 0.35rem; }
 .whoami-loc { color: var(--muted); font-size: 0.8rem; }
 
-/* stats */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 0.6rem;
-  margin-top: 0.6rem;
-}
-.stat {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.7rem 0.85rem;
-  background: var(--panel-2);
-}
-.stat b {
-  display: block;
-  color: var(--amber);
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
-}
-.stat span { color: var(--muted); font-size: 0.72rem; }
-
 /* experience */
 .xp {
   border-left: 2px solid var(--border);

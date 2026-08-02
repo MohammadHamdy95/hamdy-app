@@ -1,13 +1,7 @@
 {
   "name": "Mohammad Hamdy",
   "role": "backend engineer — java · spring · aws · distributed systems",
-  "tagline": "Columbus, OH · previously: operating rooms → now: distributed systems",
-  "stats": [
-    { "value": "10M", "label": "banking customers served @ JPMC" },
-    { "value": "70M+", "label": "requests / month @ Amazon" },
-    { "value": "$8MM+", "label": "annual revenue impact" },
-    { "value": "0", "label": "regressions in an 80M req/mo migration" }
-  ],
+  "tagline": "Columbus, OH",
   "experience": [
     {
       "title": "Software Development Engineer II",
@@ -27,15 +21,6 @@
         "Cut latency 15% on shipping-label rate shopping APIs (70M req/mo, +$5MM revenue)",
         "Shipped label-insurance infrastructure → +5% BuyShipping adoption, $2MM/yr",
         "Led 80M req/mo service migration in shadow mode — zero regression, $1MM/yr saved"
-      ]
-    },
-    {
-      "title": "Endoscopy Technician",
-      "company": "Valley Endoscopy Center",
-      "date": "Oct 2016 — Sept 2021 · El Centro, CA",
-      "current": false,
-      "bullets": [
-        "3,000+ medical procedures — precision under pressure, before it was called on-call"
       ]
     }
   ],

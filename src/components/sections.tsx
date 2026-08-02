@@ -17,19 +17,6 @@ export function Whoami() {
   );
 }
 
-export function Stats() {
-  return (
-    <div className="block stats">
-      {resume.stats.map((s) => (
-        <div className="stat" key={s.label}>
-          <b>{s.value}</b>
-          <span>{s.label}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 export function Experience() {
   return (
     <div className="block">
