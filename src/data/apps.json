@@ -1,0 +1,20 @@
+[
+  {
+    "bin": "s.hamdy.app",
+    "desc": "url shortener — paste long, share short, watch the clicks",
+    "url": "https://s.hamdy.app",
+    "status": "live"
+  },
+  {
+    "bin": "paste.hamdy.app",
+    "desc": "anonymous pastebin — share code, burn after reading",
+    "url": "https://paste.hamdy.app",
+    "status": "live"
+  },
+  {
+    "bin": "status.hamdy.app",
+    "desc": "uptime for everything above",
+    "url": null,
+    "status": "soon"
+  }
+]

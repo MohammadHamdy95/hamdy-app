@@ -1,0 +1,52 @@
+{
+  "name": "Mohammad Hamdy",
+  "role": "backend engineer — java · spring · aws · distributed systems",
+  "tagline": "Columbus, OH · previously: operating rooms → now: distributed systems",
+  "stats": [
+    { "value": "10M", "label": "banking customers served @ JPMC" },
+    { "value": "70M+", "label": "requests / month @ Amazon" },
+    { "value": "$8MM+", "label": "annual revenue impact" },
+    { "value": "0", "label": "regressions in an 80M req/mo migration" }
+  ],
+  "experience": [
+    {
+      "title": "Software Development Engineer II",
+      "company": "JPMorgan Chase",
+      "date": "June 2026 — present · Columbus, OH",
+      "current": true,
+      "bullets": [
+        "Infrastructure + CI/CD for APIs letting 10M banking customers share data with third parties, securely"
+      ]
+    },
+    {
+      "title": "Software Development Engineer",
+      "company": "Amazon",
+      "date": "Aug 2022 — Jan 2026 · Bellevue, WA",
+      "current": false,
+      "bullets": [
+        "Cut latency 15% on shipping-label rate shopping APIs (70M req/mo, +$5MM revenue)",
+        "Shipped label-insurance infrastructure → +5% BuyShipping adoption, $2MM/yr",
+        "Led 80M req/mo service migration in shadow mode — zero regression, $1MM/yr saved"
+      ]
+    },
+    {
+      "title": "Endoscopy Technician",
+      "company": "Valley Endoscopy Center",
+      "date": "Oct 2016 — Sept 2021 · El Centro, CA",
+      "current": false,
+      "bullets": [
+        "3,000+ medical procedures — precision under pressure, before it was called on-call"
+      ]
+    }
+  ],
+  "education": [
+    { "school": "CSU Monterey Bay", "detail": "BS Computer Science", "date": "2026 — 2027" },
+    { "school": "BloomTech Institute of Technology", "detail": "Backend Development", "date": "2021 — 2022" }
+  ],
+  "contact": {
+    "github": { "label": "github.com/MohammadHamdy95", "url": "https://github.com/MohammadHamdy95" },
+    "linkedin": { "label": "linkedin.com/in/mohammadhamdy", "url": "https://www.linkedin.com/in/mohammadhamdy" },
+    "email": { "label": "mohammadhamdy95@live.com", "url": "mailto:mohammadhamdy95@live.com" },
+    "resume": { "label": "hamdy.app/resume.pdf", "url": "/resume.pdf" }
+  }
+}
