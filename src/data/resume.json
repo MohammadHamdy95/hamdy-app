@@ -9,7 +9,7 @@
       "date": "June 2026 — present · Columbus, OH",
       "current": true,
       "bullets": [
-        "Infrastructure + CI/CD for APIs letting 10M banking customers share data with third parties, securely"
+        "Created infrastructure and CI/CD pipelines for APIs to securely and safely allow 10 million banking customers to share banking information with third parties."
       ]
     },
     {
@@ -18,9 +18,10 @@
       "date": "Aug 2022 — Jan 2026 · Bellevue, WA",
       "current": false,
       "bullets": [
-        "Cut latency 15% on shipping-label rate shopping APIs (70M req/mo, +$5MM revenue)",
-        "Shipped label-insurance infrastructure → +5% BuyShipping adoption, $2MM/yr",
-        "Led 80M req/mo service migration in shadow mode — zero regression, $1MM/yr saved"
+        "Reduced latency by 15% across customer shipping label rate shopping APIs used in the US, EU, and JP — handling over 70M requests per month and generating an additional $5MM in revenue.",
+        "Increased Amazon's BuyShipping customer adoption by 5% by introducing backend infrastructure for giving insurance on select shipping labels, generating $2MM in annual revenue.",
+        "Built and maintained CI/CD pipelines with integration tests, reducing manual workload by 50 hours per month for the SDE team.",
+        "Led a large-scale migration of a service handling 80M monthly requests, utilizing shadow mode to ensure zero regression and a seamless cutover to the new system, saving $1MM in annual upkeep costs."
       ]
     }
   ],
