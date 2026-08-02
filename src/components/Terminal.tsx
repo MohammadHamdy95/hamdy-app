@@ -89,11 +89,30 @@ export function Terminal({
         <span className="dot y" />
         <span className="dot g" />
         <span className="term-title">mohammad@hamdy.app — zsh</span>
-        {!done && (
-          <button className="skip" onClick={skip}>
-            skip ⏎
-          </button>
-        )}
+        <div className="bar-links">
+          {apps.map((app) =>
+            app.url ? (
+              <a
+                key={app.bin}
+                className="bar-btn live"
+                href={app.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                ● {app.bin}
+              </a>
+            ) : (
+              <span key={app.bin} className="bar-btn disabled">
+                ◌ {app.bin}
+              </span>
+            ),
+          )}
+          {!done && (
+            <button className="bar-btn" onClick={skip}>
+              skip ⏎
+            </button>
+          )}
+        </div>
       </div>
       <div className="screen">
         {commands.map((cmd, i) => {

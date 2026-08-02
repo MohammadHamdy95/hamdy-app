@@ -10,11 +10,5 @@
     "desc": "anonymous pastebin — share code, burn after reading",
     "url": "https://paste.hamdy.app",
     "status": "live"
-  },
-  {
-    "bin": "status.hamdy.app",
-    "desc": "uptime for everything above",
-    "url": null,
-    "status": "soon"
   }
 ]

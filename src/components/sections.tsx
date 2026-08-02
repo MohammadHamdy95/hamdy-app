@@ -1,5 +1,4 @@
 import resume from "../data/resume.json";
-import apps from "../data/apps.json";
 
 /**
  * Pure presentational section blocks, rendered from the data layer.
@@ -41,28 +40,6 @@ export function Experience() {
           </div>
         ))}
       </div>
-    </div>
-  );
-}
-
-export function Apps() {
-  return (
-    <div className="block apps">
-      {apps.map((app) =>
-        app.url ? (
-          <a className="app" key={app.bin} href={app.url}>
-            <span className="bin">{app.bin}</span>
-            <span className="desc"># {app.desc}</span>
-            <span className="status live">● live</span>
-          </a>
-        ) : (
-          <div className="app" key={app.bin}>
-            <span className="bin">{app.bin}</span>
-            <span className="desc"># {app.desc}</span>
-            <span className="status">◌ soon</span>
-          </div>
-        ),
-      )}
     </div>
   );
 }
