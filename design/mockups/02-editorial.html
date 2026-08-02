@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hamdy.app — concept 02: editorial</title>
+<style>
+  :root {
+    --paper: #f4f1ea;
+    --ink: #141414;
+    --muted: #6d6a63;
+    --line: #d8d4c8;
+    --accent: #2727e6;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+  /* top bar */
+  .top {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 0; border-bottom: 1px solid var(--ink);
+    font-size: .8rem; text-transform: uppercase; letter-spacing: .12em;
+  }
+  .top a { color: var(--ink); text-decoration: none; }
+  .top a:hover { color: var(--accent); }
+  .top nav { display: flex; gap: 1.8rem; }
+
+  /* hero */
+  .hero { padding: 5rem 0 3.5rem; border-bottom: 1px solid var(--ink); }
+  .kicker {
+    font-size: .8rem; text-transform: uppercase; letter-spacing: .18em;
+    color: var(--accent); margin-bottom: 1.6rem;
+  }
+  h1 {
+    font-size: clamp(3.2rem, 11.5vw, 9.5rem);
+    line-height: .92;
+    letter-spacing: -.045em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  h1 .outline {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--ink);
+  }
+  .hero-foot {
+    display: flex; justify-content: space-between; gap: 2rem;
+    margin-top: 2.8rem; flex-wrap: wrap;
+  }
+  .hero-foot p { max-width: 44ch; font-size: 1.05rem; line-height: 1.55; }
+  .hero-foot .loc { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; }
+
+  /* marquee */
+  .marquee {
+    overflow: hidden; border-bottom: 1px solid var(--ink);
+    padding: .8rem 0; white-space: nowrap; background: var(--ink); color: var(--paper);
+  }
+  .marquee span {
+    display: inline-block; padding-right: 3rem;
+    font-size: .85rem; text-transform: uppercase; letter-spacing: .18em;
+    animation: slide 22s linear infinite;
+  }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* numbers */
+  .numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); border-bottom: 1px solid var(--ink); }
+  .num { padding: 2.6rem 2rem; border-right: 1px solid var(--line); }
+  .num:last-child { border-right: none; }
+  .num b { display: block; font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -.04em; font-weight: 700; }
+  .num span { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+
+  /* sections */
+  .sec-title {
+    font-size: .8rem; text-transform: uppercase; letter-spacing: .18em;
+    color: var(--muted); padding: 3.2rem 0 1.6rem;
+  }
+  .sec-title em { color: var(--accent); font-style: normal; margin-right: .8rem; }
+
+  .xp-row {
+    display: grid; grid-template-columns: 1fr 2.2fr 1fr; gap: 2rem;
+    padding: 2rem 0; border-top: 1px solid var(--line);
+    transition: background .2s, color .2s;
+  }
+  .xp-row:hover { background: var(--ink); color: var(--paper); }
+  .xp-row:hover .muted { color: #b9b5aa; }
+  .xp-row h3 { font-size: 1.7rem; letter-spacing: -.02em; }
+  .xp-row .muted { color: var(--muted); font-size: .85rem; }
+  .xp-row ul { list-style: none; font-size: .98rem; line-height: 1.6; }
+  .xp-row li { padding: .2rem 0; }
+  .xp-row li::before { content: '—'; margin-right: .6rem; color: var(--accent); }
+  .xp-row:hover li::before { color: #8b8bff; }
+  .xp-row .date { text-align: right; font-size: .85rem; }
+
+  /* apps index */
+  .apps-table { border-top: 2px solid var(--ink); }
+  .app-row {
+    display: grid; grid-template-columns: 4rem 1.4fr 2fr 6rem; gap: 1.4rem;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--line);
+    align-items: baseline; text-decoration: none; color: var(--ink);
+    transition: padding-left .18s;
+  }
+  .app-row:hover { padding-left: 1rem; color: var(--accent); }
+  .app-row .no { font-size: .8rem; color: var(--muted); }
+  .app-row .name { font-size: 1.6rem; font-weight: 700; letter-spacing: -.02em; }
+  .app-row .desc { color: var(--muted); font-size: .95rem; }
+  .app-row .st { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; text-align: right; }
+  .app-row .st.live { color: var(--accent); }
+
+  /* footer */
+  footer {
+    margin-top: 4rem; background: var(--ink); color: var(--paper);
+    padding: 3.4rem 0 4.5rem;
+  }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; align-items: flex-end; }
+  footer .big { font-size: clamp(2rem, 6vw, 4.2rem); font-weight: 700; letter-spacing: -.04em; line-height: 1.05; }
+  footer .big a { color: var(--paper); text-decoration: none; border-bottom: 3px solid var(--accent); }
+  footer .links { display: grid; gap: .4rem; font-size: .85rem; text-transform: uppercase; letter-spacing: .12em; }
+  footer .links a { color: #b9b5aa; text-decoration: none; }
+  footer .links a:hover { color: var(--paper); }
+</style>
+</head>
+<body>
+  <div class="wrap top">
+    <a href="#">hamdy.app</a>
+    <nav><a href="#work">Work</a><a href="#apps">Apps</a><a href="#contact">Contact</a><a href="#">Resume ↓</a></nav>
+  </div>
+
+  <div class="wrap hero">
+    <div class="kicker">Backend Engineer — Bellevue, WA</div>
+    <h1>Mohammad<br><span class="outline">Hamdy</span></h1>
+    <div class="hero-foot">
+      <p>I build backend systems that quietly move enormous amounts of traffic —
+         and a small family of apps that live on this domain.</p>
+      <div class="loc">ex-Amazon · Java · AWS<br>currently: UCSD CS</div>
+    </div>
+  </div>
+
+  <div class="marquee"><span>
+    Distributed Systems · Java · Spring Boot · AWS · DynamoDB · Cassandra · Terraform ·
+    Distributed Systems · Java · Spring Boot · AWS · DynamoDB · Cassandra · Terraform ·
+  </span></div>
+
+  <div class="wrap numbers">
+    <div class="num"><b>70M+</b><span>requests / month</span></div>
+    <div class="num"><b>$8MM+</b><span>revenue impact</span></div>
+    <div class="num"><b>−15%</b><span>API latency, 3 regions</span></div>
+    <div class="num"><b>0</b><span>regressions @ 80M req migration</span></div>
+  </div>
+
+  <div class="wrap" id="work">
+    <div class="sec-title"><em>01</em> Experience</div>
+    <div class="xp-row">
+      <div><h3>Amazon</h3><div class="muted">Software Development Engineer</div></div>
+      <ul>
+        <li>Cut latency 15% on rate-shopping APIs serving US, EU and JP — 70M requests a month, +$5MM revenue</li>
+        <li>Shipped shipping-label insurance infrastructure — +5% adoption, $2MM annually</li>
+        <li>Led an 80M req/mo migration in shadow mode: zero regression, $1MM saved per year</li>
+      </ul>
+      <div class="date muted">2022 — 2026</div>
+    </div>
+    <div class="xp-row">
+      <div><h3>Valley Endoscopy</h3><div class="muted">Endoscopy Technician</div></div>
+      <ul>
+        <li>3,000+ procedures before switching careers — precision under pressure came first, code second</li>
+      </ul>
+      <div class="date muted">2016 — 2021</div>
+    </div>
+  </div>
+
+  <div class="wrap" id="apps">
+    <div class="sec-title"><em>02</em> Apps on this domain</div>
+    <div class="apps-table">
+      <a class="app-row" href="#">
+        <span class="no">A—01</span><span class="name">s.hamdy.app</span>
+        <span class="desc">URL shortener — long links in, short links out, click stats included.</span>
+        <span class="st live">Live</span>
+      </a>
+      <a class="app-row" href="#">
+        <span class="no">A—02</span><span class="name">paste.hamdy.app</span>
+        <span class="desc">Anonymous pastebin — share code with syntax highlighting, burn after reading.</span>
+        <span class="st live">Live</span>
+      </a>
+      <a class="app-row" href="#">
+        <span class="no">A—03</span><span class="name">status.hamdy.app</span>
+        <span class="desc">Uptime for everything above, self-hosted like the rest.</span>
+        <span class="st">Soon</span>
+      </a>
+    </div>
+  </div>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="big">Let’s build something.<br><a href="#">mohammadhamdy95@live.com</a></div>
+      <div class="links">
+        <a href="#">GitHub — MohammadHamdy95</a>
+        <a href="#">LinkedIn — mohammadhamdy</a>
+        <a href="#">Resume (PDF)</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

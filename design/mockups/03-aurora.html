@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hamdy.app — concept 03: aurora</title>
+<style>
+  :root {
+    --bg: #05070f;
+    --text: #e8eefb;
+    --muted: #7684a3;
+    --green: #4ade80;
+    --cyan: #22d3ee;
+    --violet: #a78bfa;
+    --card: rgba(255,255,255,.045);
+    --border: rgba(255,255,255,.1);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+  }
+  canvas#field { position: fixed; inset: 0; z-index: 0; }
+  .glow {
+    position: fixed; z-index: 0; pointer-events: none;
+    width: 60vw; height: 60vw; border-radius: 50%;
+    filter: blur(120px); opacity: .16;
+  }
+  .glow.a { background: var(--green); top: -25vw; right: -18vw; }
+  .glow.b { background: var(--violet); bottom: -30vw; left: -20vw; }
+
+  .content { position: relative; z-index: 1; max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.6rem 0; font-size: .9rem;
+  }
+  .brand { font-family: ui-monospace, Menlo, monospace; font-weight: 700; }
+  .brand .dot { color: var(--green); }
+  header nav { display: flex; gap: 1.6rem; }
+  header a { color: var(--muted); text-decoration: none; }
+  header a:hover { color: var(--text); }
+
+  .hero { padding: 16vh 0 12vh; }
+  .hello {
+    font-family: ui-monospace, Menlo, monospace;
+    color: var(--green); font-size: .95rem; margin-bottom: 1.2rem;
+  }
+  h1 {
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    line-height: 1.02; letter-spacing: -.035em; font-weight: 800;
+    background: linear-gradient(100deg, #fff 20%, var(--cyan) 55%, var(--green) 85%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub {
+    margin-top: 1.6rem; max-width: 52ch; font-size: 1.12rem;
+    line-height: 1.65; color: var(--muted);
+  }
+  .sub b { color: var(--text); font-weight: 600; }
+  .cta-row { display: flex; gap: .9rem; margin-top: 2.4rem; flex-wrap: wrap; }
+  .btn {
+    padding: .75rem 1.5rem; border-radius: 10px; text-decoration: none;
+    font-weight: 600; font-size: .92rem; transition: transform .15s, box-shadow .15s;
+  }
+  .btn.primary { background: var(--green); color: #05130a; box-shadow: 0 0 32px rgba(74,222,128,.35); }
+  .btn.ghost { color: var(--text); border: 1px solid var(--border); }
+  .btn:hover { transform: translateY(-2px); }
+
+  .metrics {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; padding-bottom: 5rem;
+  }
+  .metric {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.4rem 1.5rem; backdrop-filter: blur(8px);
+  }
+  .metric b {
+    display: block; font-size: 2.1rem; font-weight: 800; letter-spacing: -.03em;
+    background: linear-gradient(90deg, var(--green), var(--cyan));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .metric span { color: var(--muted); font-size: .82rem; }
+
+  .sec-label {
+    font-family: ui-monospace, Menlo, monospace; font-size: .85rem;
+    color: var(--green); margin-bottom: 1.6rem;
+  }
+  .sec-label::before { content: '// '; color: var(--muted); }
+
+  .timeline { position: relative; padding-left: 1.8rem; margin-bottom: 5.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px;
+    background: linear-gradient(var(--green), transparent);
+  }
+  .tl-item { position: relative; padding-bottom: 2.4rem; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -1.8rem; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--green);
+  }
+  .tl-item h3 { font-size: 1.35rem; letter-spacing: -.01em; }
+  .tl-item h3 span { color: var(--green); }
+  .tl-date { color: var(--muted); font-size: .82rem; margin: .2rem 0 .7rem; }
+  .tl-item ul { list-style: none; color: #b6c2d9; line-height: 1.7; font-size: .95rem; }
+  .tl-item li::before { content: '→ '; color: var(--cyan); }
+
+  .apps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; padding-bottom: 6rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 1.7rem; text-decoration: none; color: var(--text);
+    transition: transform .18s, border-color .18s, box-shadow .18s;
+    transform-style: preserve-3d; backdrop-filter: blur(8px);
+  }
+  .card:hover { border-color: rgba(74,222,128,.5); box-shadow: 0 18px 50px rgba(0,0,0,.45); }
+  .card .app-name { font-family: ui-monospace, Menlo, monospace; font-weight: 700; font-size: 1.15rem; }
+  .card .app-name .dot { color: var(--green); }
+  .card p { color: var(--muted); font-size: .9rem; line-height: 1.6; margin-top: .6rem; }
+  .card .tag {
+    display: inline-block; margin-top: 1.1rem; font-size: .72rem;
+    font-family: ui-monospace, Menlo, monospace;
+    color: var(--green); border: 1px solid rgba(74,222,128,.4);
+    border-radius: 99px; padding: .18rem .7rem;
+  }
+  .card .tag.soon { color: var(--muted); border-color: var(--border); }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 3rem 0 4rem;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+    color: var(--muted); font-size: .9rem;
+  }
+  footer a { color: var(--text); text-decoration: none; margin-right: 1.4rem; }
+  footer a:hover { color: var(--green); }
+</style>
+</head>
+<body>
+  <canvas id="field"></canvas>
+  <div class="glow a"></div><div class="glow b"></div>
+
+  <div class="content">
+    <header>
+      <span class="brand">hamdy<span class="dot">.</span>app</span>
+      <nav><a href="#work">work</a><a href="#apps">apps</a><a href="#contact">contact</a></nav>
+    </header>
+
+    <section class="hero">
+      <div class="hello">$ whoami</div>
+      <h1>Mohammad Hamdy<br>builds backends.</h1>
+      <p class="sub">Backend engineer, ex-<b>Amazon</b>. I make distributed systems that move
+        <b>70M+ requests a month</b> — and this domain is where my own apps live.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#apps">explore the apps</a>
+        <a class="btn ghost" href="#">resume ↓</a>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <div class="metric"><b data-count="70">0</b><span>million requests / month</span></div>
+      <div class="metric"><b data-count="8" data-prefix="$" data-suffix="MM+">0</b><span>annual revenue impact</span></div>
+      <div class="metric"><b data-count="15" data-prefix="−" data-suffix="%">0</b><span>API latency, 3 regions</span></div>
+      <div class="metric"><b data-count="0">0</b><span>regressions @ 80M req migration</span></div>
+    </section>
+
+    <section id="work">
+      <div class="sec-label">experience</div>
+      <div class="timeline">
+        <div class="tl-item">
+          <h3>Software Development Engineer <span>@ Amazon</span></h3>
+          <div class="tl-date">Aug 2022 — Jan 2026 · Bellevue, WA</div>
+          <ul>
+            <li>Cut latency 15% on rate-shopping APIs across US, EU, JP — +$5MM revenue</li>
+            <li>Built shipping-label insurance infra — +5% adoption, $2MM annually</li>
+            <li>Migrated an 80M req/mo service via shadow mode — zero regression</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <h3>Endoscopy Technician <span>@ Valley Endoscopy</span></h3>
+          <div class="tl-date">Oct 2016 — Sept 2021 · El Centro, CA</div>
+          <ul><li>3,000+ procedures — precision under pressure before precision under load</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="apps">
+      <div class="sec-label">apps on this domain</div>
+      <div class="apps">
+        <a class="card" href="#">
+          <div class="app-name">s<span class="dot">.</span>hamdy.app</div>
+          <p>URL shortener. Long links in, short links out — with click stats, no accounts, no tracking.</p>
+          <span class="tag">● live</span>
+        </a>
+        <a class="card" href="#">
+          <div class="app-name">paste<span class="dot">.</span>hamdy.app</div>
+          <p>Anonymous pastebin. Syntax highlighting, expiry, burn-after-reading. Backed by Cassandra.</p>
+          <span class="tag">● live</span>
+        </a>
+        <a class="card" href="#">
+          <div class="app-name">status<span class="dot">.</span>hamdy.app</div>
+          <p>Uptime and health for the whole family — self-hosted like everything else here.</p>
+          <span class="tag soon">◌ soon</span>
+        </a>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div>
+        <a href="#">github</a><a href="#">linkedin</a><a href="#">email</a><a href="#">resume</a>
+      </div>
+      <div>self-hosted on a machine in my house · © 2026</div>
+    </footer>
+  </div>
+
+<script>
+// particle constellation
+const cv = document.getElementById('field'), cx = cv.getContext('2d');
+let W, H, pts = [], mouse = { x: -999, y: -999 };
+function resize() {
+  W = cv.width = innerWidth * devicePixelRatio;
+  H = cv.height = innerHeight * devicePixelRatio;
+  cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+}
+resize(); addEventListener('resize', resize);
+const N = Math.min(110, Math.floor(innerWidth / 14));
+for (let i = 0; i < N; i++) pts.push({
+  x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+  vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25,
+});
+addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+function tick() {
+  cx.clearRect(0, 0, W, H);
+  cx.save(); cx.scale(devicePixelRatio, devicePixelRatio);
+  for (const p of pts) {
+    const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+    if (d < 140 && d > 0) { p.vx += dx / d * .03; p.vy += dy / d * .03; }
+    p.vx *= .985; p.vy *= .985;
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > innerWidth) p.vx *= -1;
+    if (p.y < 0 || p.y > innerHeight) p.vy *= -1;
+  }
+  for (let i = 0; i < pts.length; i++) {
+    for (let j = i + 1; j < pts.length; j++) {
+      const a = pts[i], b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 130) {
+        cx.strokeStyle = `rgba(74,222,128,${(1 - d / 130) * .16})`;
+        cx.beginPath(); cx.moveTo(a.x, a.y); cx.lineTo(b.x, b.y); cx.stroke();
+      }
+    }
+  }
+  for (const p of pts) {
+    cx.fillStyle = 'rgba(160,220,190,.7)';
+    cx.beginPath(); cx.arc(p.x, p.y, 1.4, 0, 7); cx.fill();
+  }
+  cx.restore();
+  requestAnimationFrame(tick);
+}
+tick();
+
+// tilt cards
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const rx = ((e.clientY - r.top) / r.height - .5) * -8;
+    const ry = ((e.clientX - r.left) / r.width - .5) * 8;
+    card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-3px)`;
+  });
+  card.addEventListener('mouseleave', () => card.style.transform = '');
+});
+
+// count-up metrics
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if (!en.isIntersecting) return;
+  const el = en.target, target = +el.dataset.count;
+  const prefix = el.dataset.prefix ?? '', suffix = el.dataset.suffix ?? (target >= 10 ? 'M+' : '');
+  let cur = 0; const step = Math.max(1, Math.ceil(target / 40));
+  const t = setInterval(() => {
+    cur = Math.min(target, cur + step);
+    el.textContent = prefix + cur + (target === 0 ? '' : suffix);
+    if (cur >= target) clearInterval(t);
+  }, 30);
+  io.unobserve(el);
+}), { threshold: .6 });
+document.querySelectorAll('[data-count]').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

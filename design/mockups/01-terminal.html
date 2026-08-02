@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hamdy.app — concept 01: terminal</title>
+<style>
+  :root {
+    --bg: #0a0e12;
+    --panel: #0f141a;
+    --border: #1c2530;
+    --text: #d7e2ec;
+    --muted: #5c6f82;
+    --green: #4ade80;
+    --amber: #fbbf24;
+    --cyan: #67e8f9;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 4vh 1.25rem 8vh;
+  }
+  .term {
+    width: 100%;
+    max-width: 880px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+    overflow: hidden;
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: #0c1116;
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
+  .term-title { margin-left: .75rem; color: var(--muted); font-size: .75rem; }
+  .screen { padding: 1.5rem 1.75rem 2.25rem; font-size: .875rem; line-height: 1.75; }
+
+  .prompt { color: var(--muted); }
+  .prompt .user { color: var(--green); }
+  .prompt .path { color: var(--cyan); }
+  .cmd { color: var(--text); font-weight: 600; }
+  .block { margin: .35rem 0 1.6rem; }
+  .comment { color: var(--muted); }
+
+  .whoami-name {
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: #fff;
+    margin: .4rem 0 .1rem;
+  }
+  .whoami-role { color: var(--green); margin-bottom: .35rem; }
+  .whoami-loc { color: var(--muted); font-size: .8rem; }
+
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: .6rem; margin-top: .6rem; }
+  .stat {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .7rem .85rem;
+    background: #0c1116;
+  }
+  .stat b { display: block; color: var(--amber); font-size: 1.25rem; letter-spacing: -.01em; }
+  .stat span { color: var(--muted); font-size: .72rem; }
+
+  .xp { border-left: 2px solid var(--border); padding-left: 1rem; margin-top: .5rem; }
+  .xp-head { color: #fff; font-weight: 700; }
+  .xp-head .at { color: var(--green); }
+  .xp-date { color: var(--muted); font-size: .78rem; }
+  .xp ul { list-style: none; padding: .35rem 0 0; }
+  .xp li::before { content: '▸ '; color: var(--green); }
+  .xp li { color: var(--text); padding: .12rem 0; }
+  .xp + .xp { margin-top: 1.1rem; }
+
+  .apps { display: grid; gap: .55rem; margin-top: .6rem; }
+  .app {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: .75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: #0c1116;
+    text-decoration: none;
+    transition: border-color .15s, transform .15s;
+  }
+  .app:hover { border-color: var(--green); transform: translateX(4px); }
+  .app .bin { color: var(--green); font-weight: 700; min-width: 12ch; }
+  .app .desc { color: var(--muted); font-size: .8rem; flex: 1; }
+  .app .status { color: var(--amber); font-size: .7rem; border: 1px solid var(--border); padding: .05rem .45rem; border-radius: 99px; }
+  .app .status.live { color: var(--green); }
+
+  .contact a { color: var(--cyan); text-decoration: none; }
+  .contact a:hover { text-decoration: underline; }
+
+  .cursor {
+    display: inline-block; width: .6em; height: 1.1em;
+    background: var(--green); vertical-align: text-bottom;
+    animation: blink 1.05s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hintbar { margin-top: 1.4rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+  .chip {
+    color: var(--muted); border: 1px dashed var(--border); border-radius: 99px;
+    padding: .2rem .8rem; font-size: .72rem; cursor: pointer; background: none;
+    font-family: inherit;
+  }
+  .chip:hover { color: var(--green); border-color: var(--green); }
+  .line { white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <div class="term">
+    <div class="term-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="term-title">mohammad@hamdy.app — zsh</span>
+    </div>
+    <div class="screen" id="screen"></div>
+  </div>
+
+<script>
+const P = `<span class="prompt"><span class="user">mohammad</span>@hamdy.app <span class="path">~</span> $</span> `;
+
+const SECTIONS = [
+  { cmd: 'whoami', html: `
+    <div class="block">
+      <div class="whoami-name">Mohammad Hamdy</div>
+      <div class="whoami-role">backend engineer — java · spring · aws · distributed systems</div>
+      <div class="whoami-loc"># Bellevue, WA · previously: operating rooms → now: distributed systems</div>
+    </div>` },
+  { cmd: 'stats --career', html: `
+    <div class="block stats">
+      <div class="stat"><b>70M+</b><span>requests / month served</span></div>
+      <div class="stat"><b>$8MM+</b><span>annual revenue impact</span></div>
+      <div class="stat"><b>-15%</b><span>latency, US · EU · JP APIs</span></div>
+      <div class="stat"><b>0</b><span>regressions in an 80M req/mo migration</span></div>
+    </div>` },
+  { cmd: 'cat experience.md', html: `
+    <div class="block">
+      <div class="xp">
+        <div class="xp-head">Software Development Engineer <span class="at">@ Amazon</span></div>
+        <div class="xp-date">Aug 2022 — Jan 2026 · Bellevue, WA</div>
+        <ul>
+          <li>Cut latency 15% on shipping-label rate shopping APIs (70M req/mo, +$5MM revenue)</li>
+          <li>Shipped label-insurance infrastructure → +5% BuyShipping adoption, $2MM/yr</li>
+          <li>Led 80M req/mo service migration in shadow mode — zero regression, $1MM/yr saved</li>
+        </ul>
+      </div>
+      <div class="xp">
+        <div class="xp-head">Endoscopy Technician <span class="at">@ Valley Endoscopy Center</span></div>
+        <div class="xp-date">Oct 2016 — Sept 2021 · El Centro, CA</div>
+        <ul>
+          <li>3,000+ medical procedures — precision under pressure, before it was called on-call</li>
+        </ul>
+      </div>
+    </div>` },
+  { cmd: 'ls ~/apps', html: `
+    <div class="block apps">
+      <a class="app" href="#"><span class="bin">s.hamdy.app</span><span class="desc"># url shortener — paste long, share short, watch the clicks</span><span class="status live">● live</span></a>
+      <a class="app" href="#"><span class="bin">paste.hamdy.app</span><span class="desc"># anonymous pastebin — share code, burn after reading</span><span class="status live">● live</span></a>
+      <a class="app" href="#"><span class="bin">status.hamdy.app</span><span class="desc"># uptime for everything above</span><span class="status">◌ soon</span></a>
+    </div>` },
+  { cmd: 'contact --all', html: `
+    <div class="block contact">
+      <div class="line">github   → <a href="#">github.com/MohammadHamdy95</a></div>
+      <div class="line">linkedin → <a href="#">linkedin.com/in/mohammadhamdy</a></div>
+      <div class="line">email    → <a href="#">mohammadhamdy95@live.com</a></div>
+      <div class="line">resume   → <a href="#">hamdy.app/resume.pdf</a></div>
+    </div>` },
+];
+
+const screen = document.getElementById('screen');
+
+function typeCommand(text, el, done) {
+  let i = 0;
+  const t = setInterval(() => {
+    el.querySelector('.cmd').textContent = text.slice(0, ++i);
+    if (i >= text.length) { clearInterval(t); setTimeout(done, 180); }
+  }, 34);
+}
+
+function run(idx) {
+  if (idx >= SECTIONS.length) {
+    const tail = document.createElement('div');
+    tail.innerHTML = `${P}<span class="cmd"></span><span class="cursor"></span>
+      <div class="hintbar">
+        <button class="chip">open s.hamdy.app</button>
+        <button class="chip">open paste.hamdy.app</button>
+        <button class="chip">curl resume.pdf</button>
+      </div>`;
+    screen.appendChild(tail);
+    return;
+  }
+  const line = document.createElement('div');
+  line.innerHTML = `${P}<span class="cmd"></span><span class="cursor"></span>`;
+  screen.appendChild(line);
+  typeCommand(SECTIONS[idx].cmd, line, () => {
+    line.querySelector('.cursor').remove();
+    const out = document.createElement('div');
+    out.innerHTML = SECTIONS[idx].html;
+    screen.appendChild(out);
+    window.scrollTo({ top: document.body.scrollHeight });
+    setTimeout(() => run(idx + 1), 260);
+  });
+}
+run(0);
+</script>
+</body>
+</html>
