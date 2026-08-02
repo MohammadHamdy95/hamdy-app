@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammad Hamdy</title>
+<style>
+  :root {
+    --ink: #1c1c1c;
+    --muted: #6b6255;
+    --faint: #948a7b;
+    --paper: #faf8f4;
+    --rule: #e3ddd2;
+    --accent: #7a5c2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Charter, Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 680px; margin: 0 auto; padding: 72px 32px 96px; }
+
+  header.masthead { text-align: center; margin-bottom: 20px; }
+  .masthead h1 {
+    font-size: 40px; font-weight: 400; letter-spacing: 0.01em;
+  }
+  .masthead .role {
+    margin-top: 10px; font-size: 17px; color: var(--muted); font-style: italic;
+  }
+  .masthead .where { margin-top: 4px; font-size: 15px; color: var(--faint); }
+
+  .links {
+    display: flex; justify-content: center; gap: 26px; flex-wrap: wrap;
+    margin: 28px 0 8px; font-size: 15px;
+  }
+  .links a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+  .links a:hover { border-bottom-color: var(--accent); }
+
+  hr.orn {
+    border: 0; height: 1px; background: var(--rule);
+    margin: 44px auto; width: 100%; position: relative; overflow: visible;
+  }
+  hr.orn::after {
+    content: '❖'; position: absolute; left: 50%; top: -12px; transform: translateX(-50%);
+    background: var(--paper); padding: 0 14px; color: var(--faint); font-size: 13px;
+  }
+
+  section h2 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--faint); margin-bottom: 26px; font-family: -apple-system, 'Helvetica Neue', sans-serif;
+  }
+  .entry { margin-bottom: 34px; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry .top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .entry h3 { font-size: 19px; font-weight: 600; }
+  .entry .co { font-style: italic; color: var(--muted); font-weight: 400; }
+  .entry .date { font-size: 14px; color: var(--faint); white-space: nowrap; font-family: -apple-system, 'Helvetica Neue', sans-serif; }
+  .entry ul { margin-top: 10px; padding-left: 20px; }
+  .entry li { margin-bottom: 7px; color: #3a362f; }
+  .entry li::marker { color: var(--faint); }
+
+  .edu { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+  .edu .detail { color: var(--muted); font-style: italic; }
+  .edu .date { font-size: 14px; color: var(--faint); font-family: -apple-system, 'Helvetica Neue', sans-serif; }
+
+  .apps { display: flex; flex-direction: column; gap: 14px; }
+  .app { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .app a { color: var(--accent); text-decoration: none; font-size: 17px; border-bottom: 1px solid var(--rule); }
+  .app a:hover { border-bottom-color: var(--accent); }
+  .app .desc { color: var(--muted); font-size: 15px; }
+
+  footer { margin-top: 64px; text-align: center; font-size: 13px; color: var(--faint);
+    font-family: -apple-system, 'Helvetica Neue', sans-serif; letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <h1>Mohammad Hamdy</h1>
+    <p class="role">Backend engineer — Java, Spring, AWS, distributed systems</p>
+    <p class="where">Columbus, Ohio</p>
+    <nav class="links">
+      <a href="#">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Email</a>
+      <a href="#">Résumé (PDF)</a>
+    </nav>
+  </header>
+
+  <hr class="orn">
+
+  <section>
+    <h2>Experience</h2>
+    <div class="entry">
+      <div class="top">
+        <h3>Software Development Engineer II · <span class="co">JPMorgan Chase</span></h3>
+        <span class="date">June 2026 — present</span>
+      </div>
+      <ul>
+        <li>Infrastructure and CI/CD for APIs that let 10 million banking customers share data with third parties, securely.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="top">
+        <h3>Software Development Engineer · <span class="co">Amazon</span></h3>
+        <span class="date">Aug 2022 — Jan 2026</span>
+      </div>
+      <ul>
+        <li>Cut latency 15% on shipping-label rate-shopping APIs serving 70M requests/month, adding $5MM in revenue.</li>
+        <li>Shipped label-insurance infrastructure, lifting BuyShipping adoption 5% ($2MM/yr).</li>
+        <li>Led an 80M req/month service migration in shadow mode — zero regressions, $1MM/yr saved.</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="orn">
+
+  <section>
+    <h2>Projects</h2>
+    <div class="apps">
+      <div class="app">
+        <a href="#">s.hamdy.app</a>
+        <span class="desc">URL shortener — Spring Boot &amp; DynamoDB, self-hosted</span>
+      </div>
+      <div class="app">
+        <a href="#">paste.hamdy.app</a>
+        <span class="desc">Anonymous pastebin — Spring Boot &amp; Cassandra</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="orn">
+
+  <section>
+    <h2>Education</h2>
+    <div class="edu">
+      <div><strong>CSU Monterey Bay</strong> · <span class="detail">BS Computer Science</span></div>
+      <span class="date">2026 — 2027</span>
+    </div>
+    <div class="edu">
+      <div><strong>BloomTech Institute of Technology</strong> · <span class="detail">Backend Development</span></div>
+      <span class="date">2021 — 2022</span>
+    </div>
+  </section>
+
+  <footer>MOHAMMAD HAMDY · COLUMBUS, OHIO</footer>
+</div>
+</body>
+</html>

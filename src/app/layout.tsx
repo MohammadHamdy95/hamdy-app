@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
+// Active theme stylesheet — swap for ../themes/terminal/terminal.css to
+// bring the terminal look back (see src/themes/terminal/README.md).
+import "../themes/serif/serif.css";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",

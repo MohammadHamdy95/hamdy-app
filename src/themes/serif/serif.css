@@ -1,0 +1,139 @@
+/* Classic serif theme — warm paper, Charter/Georgia, print-résumé feel. */
+
+:root {
+  --ink: #1c1c1c;
+  --body-ink: #3a362f;
+  --muted: #6b6255;
+  --faint: #948a7b;
+  --paper: #faf8f4;
+  --rule: #e3ddd2;
+  --accent: #7a5c2e;
+  --serif: Charter, Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 72px 32px 96px;
+}
+
+/* masthead */
+.masthead { text-align: center; margin-bottom: 20px; }
+.masthead h1 { font-size: 40px; font-weight: 400; letter-spacing: 0.01em; }
+.masthead .role { margin-top: 10px; font-size: 17px; color: var(--muted); font-style: italic; }
+.masthead .where { margin-top: 4px; font-size: 15px; color: var(--faint); }
+
+.links {
+  display: flex; justify-content: center; gap: 26px; flex-wrap: wrap;
+  margin: 28px 0 8px; font-size: 15px;
+}
+.links a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+.links a:hover { border-bottom-color: var(--accent); }
+
+/* ornamental rule */
+hr.orn {
+  border: 0; height: 1px; background: var(--rule);
+  margin: 44px auto; width: 100%; position: relative; overflow: visible;
+}
+hr.orn::after {
+  content: "❖"; position: absolute; left: 50%; top: -12px; transform: translateX(-50%);
+  background: var(--paper); padding: 0 14px; color: var(--faint); font-size: 13px;
+}
+
+/* sections */
+section h2 {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--faint); margin-bottom: 26px; font-family: var(--sans);
+}
+
+.entry { margin-bottom: 34px; }
+.entry:last-child { margin-bottom: 0; }
+.entry .top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.entry h3 { font-size: 19px; font-weight: 600; }
+.entry .co { font-style: italic; color: var(--muted); font-weight: 400; }
+.entry .date { font-size: 14px; color: var(--faint); white-space: nowrap; font-family: var(--sans); }
+.entry ul { margin-top: 10px; padding-left: 20px; list-style: disc; }
+.entry li { margin-bottom: 7px; color: var(--body-ink); }
+.entry li::marker { color: var(--faint); }
+
+.edu { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 14px; flex-wrap: wrap; }
+.edu .detail { color: var(--muted); font-style: italic; }
+.edu .date { font-size: 14px; color: var(--faint); font-family: var(--sans); }
+
+/* projects */
+.apps { display: flex; flex-direction: column; gap: 22px; }
+.app .app-line { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.app .app-line > a { color: var(--accent); text-decoration: none; font-size: 17px; border-bottom: 1px solid var(--rule); }
+.app .app-line > a:hover { border-bottom-color: var(--accent); }
+.app .desc { color: var(--muted); font-size: 15px; }
+.app .arch-link { font-size: 14px; font-family: var(--sans); margin-top: 4px; }
+.app .arch-link a { color: var(--faint); text-decoration: none; border-bottom: 1px dotted var(--rule); }
+.app .arch-link a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+footer.colophon {
+  margin-top: 64px; text-align: center; font-size: 13px; color: var(--faint);
+  font-family: var(--sans); letter-spacing: 0.04em;
+}
+
+/* ── project architecture pages ────────────────────────────────── */
+
+.proj-page { max-width: 760px; margin: 0 auto; padding: 56px 32px 96px; }
+
+.crumbs { font-size: 14px; font-family: var(--sans); margin-bottom: 40px; }
+.crumbs a { color: var(--faint); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs .sep { color: var(--rule); margin: 0 8px; }
+
+.proj-head h1 { font-size: 32px; font-weight: 400; }
+.proj-head .sub { margin-top: 8px; font-size: 17px; color: var(--muted); font-style: italic; }
+.proj-head .visit { margin-top: 16px; font-size: 15px; font-family: var(--sans); }
+.proj-head .visit a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--rule); }
+.proj-head .visit a:hover { border-bottom-color: var(--accent); }
+
+.proj-page section p { color: var(--body-ink); margin-bottom: 14px; }
+.proj-page section p:last-child { margin-bottom: 0; }
+
+.diagram {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 20px 12px;
+  overflow-x: auto;
+}
+.diagram svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+
+.stack-list { list-style: none; padding: 0; }
+.stack-list li {
+  display: flex; gap: 14px; margin-bottom: 12px; color: var(--body-ink);
+  align-items: baseline;
+}
+.stack-list .what {
+  font-family: var(--sans); font-size: 13px; color: var(--faint);
+  text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap;
+  min-width: 92px;
+}
+
+table.endpoints { width: 100%; border-collapse: collapse; font-size: 15px; }
+table.endpoints th {
+  text-align: left; font-family: var(--sans); font-size: 12px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint);
+  padding: 0 12px 10px 0; border-bottom: 1px solid var(--rule);
+}
+table.endpoints td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: baseline; }
+table.endpoints tr:last-child td { border-bottom: 0; }
+table.endpoints .method {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px;
+  color: var(--accent); white-space: nowrap;
+}
+table.endpoints .path { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13.5px; white-space: nowrap; }
+table.endpoints .what-col { color: var(--muted); }

@@ -1,17 +1,7 @@
-import { Terminal } from "../components/Terminal";
-import { Contact, Experience, Whoami } from "../components/sections";
+import { SerifHome } from "../themes/serif/Home";
 
-const COMMANDS = ["whoami", "cat experience.md", "contact --all"];
-
+// Active theme: classic serif. To switch back to the terminal theme,
+// see src/themes/terminal/README.md.
 export default function Home() {
-  return (
-    <Terminal
-      commands={COMMANDS}
-      sections={[
-        <Whoami key="whoami" />,
-        <Experience key="xp" />,
-        <Contact key="contact" />,
-      ]}
-    />
-  );
+  return <SerifHome />;
 }

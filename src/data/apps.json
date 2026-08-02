@@ -1,14 +1,16 @@
 [
   {
     "bin": "s.hamdy.app",
-    "desc": "url shortener — paste long, share short, watch the clicks",
+    "desc": "URL shortener — Spring Boot & DynamoDB, self-hosted",
     "url": "https://s.hamdy.app",
-    "status": "live"
+    "status": "live",
+    "slug": "shortener"
   },
   {
     "bin": "paste.hamdy.app",
-    "desc": "anonymous pastebin — share code, burn after reading",
+    "desc": "Anonymous pastebin — Spring Boot & Cassandra",
     "url": "https://paste.hamdy.app",
-    "status": "live"
+    "status": "live",
+    "slug": "paste"
   }
 ]
