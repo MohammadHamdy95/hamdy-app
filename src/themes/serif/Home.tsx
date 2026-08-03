@@ -14,7 +14,7 @@ export function SerifHome() {
         <nav className="links">
           <a href={github.url}>GitHub</a>
           <a href={linkedin.url}>LinkedIn</a>
-          <a href={email.url}>Email</a>
+          <a href={email.url}>{email.label}</a>
           <a href={cv.url}>Résumé (PDF)</a>
         </nav>
       </header>
