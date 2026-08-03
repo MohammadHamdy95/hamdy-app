@@ -1,22 +1,31 @@
 [
   {
     "bin": "tiny.hamdy.app",
-    "desc": "URL shortener — Spring Boot & DynamoDB, self-hosted",
+    "desc": "A self-hosted URL-shortening service built with Spring Boot and DynamoDB.",
+    "focus": "Designed around predictable low-latency lookups, short-code generation, expiration handling, and deployment on self-managed infrastructure.",
+    "tags": ["Java", "Spring Boot", "DynamoDB", "Docker"],
     "url": "https://tiny.hamdy.app",
+    "github": "https://github.com/MohammadHamdy95/tiny-backend",
     "status": "live",
     "slug": "tiny"
   },
   {
     "bin": "paste.hamdy.app",
-    "desc": "Anonymous pastebin — Spring Boot & Cassandra",
+    "desc": "An anonymous paste-sharing service built with Spring Boot and Cassandra.",
+    "focus": "Designed to explore write-heavy workloads, distributed storage, expiration policies, and scalable content retrieval.",
+    "tags": ["Java", "Spring Boot", "Cassandra", "Docker"],
     "url": "https://paste.hamdy.app",
+    "github": "https://github.com/MohammadHamdy95/paste-backend",
     "status": "live",
     "slug": "paste"
   },
   {
     "bin": "prayertime",
-    "desc": "Self-rescheduling adhan system — rewrites its own crontab daily",
-    "url": "https://github.com/MohammadHamdy95/prayertime",
+    "desc": "A self-rescheduling adhan system that recalculates prayer times and rewrites its own crontab each day.",
+    "focus": "Built around scheduling, automation, and reliability: each run installs the day's cron jobs and schedules its own next execution, running unattended on a home server.",
+    "tags": ["Java", "Spring Boot", "Linux", "cron"],
+    "url": null,
+    "github": "https://github.com/MohammadHamdy95/prayertime",
     "status": "live",
     "slug": "prayertime"
   }

@@ -11,14 +11,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mohammad Hamdy — backend engineer",
+  title: "Mohammad Hamdy — Backend Engineer",
   description:
-    "Backend engineer at JPMorgan Chase, ex-Amazon. Distributed systems, Java, Spring, AWS — and the home of tiny.hamdy.app and paste.hamdy.app.",
+    "Backend engineer with 4 years of experience building Java, Spring, AWS, and distributed systems at Amazon and JPMorgan Chase.",
   metadataBase: new URL("https://hamdy.app"),
+  alternates: { canonical: "https://hamdy.app" },
   openGraph: {
-    title: "Mohammad Hamdy — backend engineer",
+    title: "Mohammad Hamdy — Backend Engineer",
     description:
-      "Backend engineer at JPMorgan Chase, ex-Amazon. Home of the hamdy.app app family.",
+      "Backend engineer with 4 years of experience building Java, Spring, AWS, and distributed systems at Amazon and JPMorgan Chase.",
     url: "https://hamdy.app",
     siteName: "hamdy.app",
   },

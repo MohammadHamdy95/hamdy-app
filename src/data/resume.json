@@ -9,7 +9,7 @@
       "date": "June 2026 — present · Columbus, OH",
       "current": true,
       "bullets": [
-        "Created infrastructure and CI/CD pipelines for APIs to securely and safely allow 10 million banking customers to share banking information with third parties."
+        "Built infrastructure and CI/CD pipelines for APIs enabling 10 million banking customers to securely share financial data with authorized third parties."
       ]
     },
     {
@@ -18,15 +18,15 @@
       "date": "Aug 2022 — Jan 2026 · Bellevue, WA",
       "current": false,
       "bullets": [
-        "Reduced latency by 15% across customer shipping label rate shopping APIs used in the US, EU, and JP — handling over 70M requests per month and generating an additional $5MM in revenue.",
-        "Increased Amazon's BuyShipping customer adoption by 5% by introducing backend infrastructure for giving insurance on select shipping labels, generating $2MM in annual revenue.",
-        "Built and maintained CI/CD pipelines with integration tests, reducing manual workload by 50 hours per month for the SDE team.",
-        "Led a large-scale migration of a service handling 80M monthly requests, utilizing shadow mode to ensure zero regression and a seamless cutover to the new system, saving $1MM in annual upkeep costs."
+        "Reduced latency by 15% across customer shipping-label rate-shopping APIs used in the United States, Europe, and Japan — handling more than 70 million requests per month and generating approximately $5M in additional revenue.",
+        "Increased customer adoption by 5% by introducing backend infrastructure for offering insurance coverage on selected shipping labels, generating approximately $2M in annual revenue.",
+        "Built and maintained CI/CD pipelines and integration tests, reducing manual engineering work by approximately 50 hours per month.",
+        "Led the migration of a service handling approximately 80 million monthly requests, using shadow mode to validate behavior, prevent regressions, and achieve a seamless cutover — saving approximately $1M per year in upkeep costs."
       ]
     }
   ],
   "education": [
-    { "school": "CSU Monterey Bay", "detail": "BS Computer Science", "date": "2026 — 2027" },
+    { "school": "California State University, Monterey Bay", "detail": "B.S. Computer Science", "date": "Expected 2027" },
     { "school": "BloomTech Institute of Technology", "detail": "Backend Development", "date": "2021 — 2022" }
   ],
   "contact": {
