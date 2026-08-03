@@ -18,11 +18,16 @@ export interface RepoLink {
   what: string;
 }
 
-/** Shared shell for the per-project architecture pages (serif theme). */
+/**
+ * Shared shell for the per-project architecture pages (serif theme).
+ * Web apps pass liveUrl + endpoints + contractUrl; non-web projects
+ * (e.g. prayertime) omit them and can override the visit link.
+ */
 export function ProjectPage({
   name,
   tagline,
   liveUrl,
+  visitLabel,
   overview,
   diagram,
   diagramCaption,
@@ -33,14 +38,15 @@ export function ProjectPage({
 }: {
   name: string;
   tagline: string;
-  liveUrl: string;
+  liveUrl?: string;
+  visitLabel?: string;
   overview: ReactNode;
   diagram: ReactNode;
   diagramCaption: string;
   stack: StackRow[];
-  endpoints: Endpoint[];
+  endpoints?: Endpoint[];
   repos: RepoLink[];
-  contractUrl: string;
+  contractUrl?: string;
 }) {
   return (
     <div className="proj-page">
@@ -55,9 +61,11 @@ export function ProjectPage({
       <header className="proj-head">
         <h1>{name}</h1>
         <p className="sub">{tagline}</p>
-        <p className="visit">
-          <a href={liveUrl}>visit {name} →</a>
-        </p>
+        {liveUrl && (
+          <p className="visit">
+            <a href={liveUrl}>{visitLabel ?? `visit ${name} →`}</a>
+          </p>
+        )}
       </header>
 
       <hr className="orn" />
@@ -91,38 +99,42 @@ export function ProjectPage({
         </ul>
       </section>
 
-      <hr className="orn" />
+      {endpoints && contractUrl && (
+        <>
+          <hr className="orn" />
 
-      <section>
-        <h2>API</h2>
-        <p style={{ marginBottom: 18 }}>
-          Designed contract-first: an{" "}
-          <a href={contractUrl} style={{ color: "var(--accent)" }}>
-            OpenAPI 3.1 spec
-          </a>{" "}
-          is the source of truth, written and reviewed before any
-          implementation. Anonymous by design — no auth, no accounts, no
-          tracking. Errors follow RFC 9457 Problem Details.
-        </p>
-        <table className="endpoints">
-          <thead>
-            <tr>
-              <th>Method</th>
-              <th>Path</th>
-              <th>Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            {endpoints.map((e) => (
-              <tr key={e.method + e.path}>
-                <td className="method">{e.method}</td>
-                <td className="path">{e.path}</td>
-                <td className="what-col">{e.what}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+          <section>
+            <h2>API</h2>
+            <p style={{ marginBottom: 18 }}>
+              Designed contract-first: an{" "}
+              <a href={contractUrl} style={{ color: "var(--accent)" }}>
+                OpenAPI 3.1 spec
+              </a>{" "}
+              is the source of truth, written and reviewed before any
+              implementation. Anonymous by design — no auth, no accounts, no
+              tracking. Errors follow RFC 9457 Problem Details.
+            </p>
+            <table className="endpoints">
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>Path</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                {endpoints.map((e) => (
+                  <tr key={e.method + e.path}>
+                    <td className="method">{e.method}</td>
+                    <td className="path">{e.path}</td>
+                    <td className="what-col">{e.what}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+        </>
+      )}
 
       <hr className="orn" />
 
@@ -147,31 +159,31 @@ export function ProjectPage({
   );
 }
 
-const box = {
+export const box = {
   fill: "#ffffff",
   stroke: "#8a8071",
   strokeWidth: 1.2,
   rx: 3,
 } as const;
 
-const boxLabel = {
+export const boxLabel = {
   fontFamily: "Charter, Georgia, serif",
   fontSize: 13.5,
   fill: "#1c1c1c",
   textAnchor: "middle",
 } as const;
 
-const smallLabel = {
+export const smallLabel = {
   fontFamily: "-apple-system, 'Helvetica Neue', sans-serif",
   fontSize: 10.5,
   fill: "#948a7b",
   textAnchor: "middle",
 } as const;
 
-const arrow = { stroke: "#8a8071", strokeWidth: 1.2, markerEnd: "url(#arr)" } as const;
+export const arrow = { stroke: "#8a8071", strokeWidth: 1.2, markerEnd: "url(#arr)" } as const;
 
 /** Node: a rect with one or two centered lines of text. */
-function Node({ x, y, w, h, lines }: { x: number; y: number; w: number; h: number; lines: string[] }) {
+export function Node({ x, y, w, h, lines }: { x: number; y: number; w: number; h: number; lines: string[] }) {
   const cy = y + h / 2;
   return (
     <g>

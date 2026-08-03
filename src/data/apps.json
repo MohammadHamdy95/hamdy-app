@@ -12,5 +12,12 @@
     "url": "https://paste.hamdy.app",
     "status": "live",
     "slug": "paste"
+  },
+  {
+    "bin": "prayertime",
+    "desc": "Self-rescheduling adhan system — rewrites its own crontab daily",
+    "url": "https://github.com/MohammadHamdy95/prayertime",
+    "status": "live",
+    "slug": "prayertime"
   }
 ]
