@@ -2,13 +2,6 @@ import Link from "next/link";
 import resume from "../../data/resume.json";
 import apps from "../../data/apps.json";
 
-const METRICS = [
-  { value: "4 years", label: "Professional experience" },
-  { value: "80M+", label: "Monthly requests handled" },
-  { value: "15%", label: "API latency reduction" },
-  { value: "$1M/yr", label: "Infrastructure costs saved" },
-];
-
 const SKILLS: Array<{ group: string; items: string }> = [
   { group: "Languages", items: "Java · TypeScript · SQL" },
   { group: "Backend", items: "Spring Boot · REST APIs · OpenAPI (contract-first design)" },
@@ -63,15 +56,6 @@ export function SerifHome() {
             </a>
           </div>
         </header>
-
-        <section className="metrics" aria-label="Impact metrics">
-          {METRICS.map((m) => (
-            <div className="metric" key={m.label}>
-              <div className="metric-value">{m.value}</div>
-              <div className="metric-label">{m.label}</div>
-            </div>
-          ))}
-        </section>
 
         <hr className="orn" />
 
