@@ -20,6 +20,16 @@
     "slug": "paste"
   },
   {
+    "bin": "spec.hamdy.app",
+    "desc": "An OpenAPI and Swagger document host built with Spring Boot and Cassandra.",
+    "focus": "Designed around multi-dialect parsing, versioned edits behind a secret token, and semantic diffs that classify every change as compatible or breaking.",
+    "tags": ["Java", "Spring Boot", "Cassandra", "OpenAPI"],
+    "url": "https://spec.hamdy.app",
+    "github": "https://github.com/MohammadHamdy95/spec-backend",
+    "status": "live",
+    "slug": "spec"
+  },
+  {
     "bin": "prayertime",
     "desc": "A self-rescheduling adhan system that recalculates prayer times and rewrites its own crontab each day.",
     "focus": "Built around scheduling, automation, and reliability: each run installs the day's cron jobs and schedules its own next execution, running unattended on a home server.",

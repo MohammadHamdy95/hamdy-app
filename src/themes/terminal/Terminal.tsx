@@ -177,7 +177,9 @@ function runCommand(cmd: string): string | null {
         window.open(app.url, "_blank");
         return `opening ${app.bin}…`;
       }
-      return `usage: open <tiny|paste> — e.g. \`open tiny\``;
+      // Derived, not hardcoded: adding an app to apps.json updates the hint.
+      const names = apps.filter((a) => a.url).map((a) => a.slug).join("|");
+      return `usage: open <${names}> — e.g. \`open ${apps[0].slug}\``;
     }
     case "resume":
       window.open("/resume.pdf", "_blank");

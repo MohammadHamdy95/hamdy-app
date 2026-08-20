@@ -35,6 +35,7 @@ export function ProjectPage({
   endpoints,
   repos,
   contractUrl,
+  apiNote,
 }: {
   name: string;
   tagline: string;
@@ -47,6 +48,8 @@ export function ProjectPage({
   endpoints?: Endpoint[];
   repos: RepoLink[];
   contractUrl?: string;
+  /** Replaces the default contract-first blurb above the endpoint table. */
+  apiNote?: ReactNode;
 }) {
   return (
     <div className="proj-page">
@@ -99,20 +102,24 @@ export function ProjectPage({
         </ul>
       </section>
 
-      {endpoints && contractUrl && (
+      {endpoints && (contractUrl || apiNote) && (
         <>
           <hr className="orn" />
 
           <section>
             <h2>API</h2>
             <p style={{ marginBottom: 18 }}>
-              Designed contract-first: an{" "}
-              <a href={contractUrl} style={{ color: "var(--accent)" }}>
-                OpenAPI 3.1 spec
-              </a>{" "}
-              is the source of truth, written and reviewed before any
-              implementation. Anonymous by design — no auth, no accounts, no
-              tracking. Errors follow RFC 9457 Problem Details.
+              {apiNote ?? (
+                <>
+                  Designed contract-first: an{" "}
+                  <a href={contractUrl} style={{ color: "var(--accent)" }}>
+                    OpenAPI 3.1 spec
+                  </a>{" "}
+                  is the source of truth, written and reviewed before any
+                  implementation. Anonymous by design — no auth, no accounts,
+                  no tracking. Errors follow RFC 9457 Problem Details.
+                </>
+              )}
             </p>
             <table className="endpoints">
               <thead>
