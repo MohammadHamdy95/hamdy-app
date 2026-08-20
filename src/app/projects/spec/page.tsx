@@ -59,6 +59,23 @@ export default function SpecArchitecture() {
       ]}
       apiNote={
         <>
+          The contract is{" "}
+          <a href="https://spec.hamdy.app/7ljE0iyP5y" style={{ color: "var(--accent)" }}>
+            published on the service it describes
+          </a>{" "}
+          (
+          <a
+            href="https://github.com/MohammadHamdy95/spec-backend/blob/main/api/openapi.yaml"
+            style={{ color: "var(--accent)" }}
+          >
+            source
+          </a>
+          ) — which doubles as the cheapest end-to-end test available: if it
+          parses, renders in both viewers and diffs cleanly against the
+          previous revision, the pipeline works. Unlike tiny and paste it was
+          written from the implementation rather than before it.
+          <br />
+          <br />
           Served same-origin under <code>/v1/*</code>, so there is no CORS
           surface — and not on a two-level subdomain, which Cloudflare&apos;s
           free Universal SSL does not cover. Publishing is anonymous; editing
