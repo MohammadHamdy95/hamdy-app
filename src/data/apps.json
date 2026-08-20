@@ -20,6 +20,16 @@
     "slug": "paste"
   },
   {
+    "bin": "docs.hamdy.app",
+    "desc": "An account-free service for publishing and sharing versioned OpenAPI documentation.",
+    "focus": "Designed around secure parsing of untrusted specifications, immutable revisions, unlisted sharing, capability-based management, and SSRF-resistant reference handling.",
+    "tags": ["Java", "Spring Boot", "PostgreSQL", "React"],
+    "url": "https://docs.hamdy.app",
+    "github": "https://github.com/MohammadHamdy95/apidocs-backend",
+    "status": "live",
+    "slug": "docs"
+  },
+  {
     "bin": "prayertime",
     "desc": "A self-rescheduling adhan system that recalculates prayer times and rewrites its own crontab each day.",
     "focus": "Built around scheduling, automation, and reliability: each run installs the day's cron jobs and schedules its own next execution, running unattended on a home server.",
