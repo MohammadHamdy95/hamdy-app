@@ -6,5 +6,26 @@ encode gzip
 @static path /_next/static/*
 header @static Cache-Control "public, max-age=31536000, immutable"
 
-try_files {path} /index.html
-file_server
+# Next's static export writes each route as `<route>.html` AND a directory
+# of the same name holding that route's RSC payload — so /projects/spec.html
+# sits beside a /projects/spec/ directory containing only .txt files.
+#
+# `try_files {path}` matches that directory (try_files accepts files OR
+# directories), file_server then finds no index.html inside it, and the
+# whole request fell through to /index.html. Result: every project page
+# served the home page at 200 on a direct hit. Client-side nav from the
+# home page hid it, because that never touches the server.
+#
+# So the .html file must be tried FIRST, before the path itself.
+handle {
+	try_files {path}.html {path}
+	file_server
+}
+
+# And an unknown path is a 404, not a silent home page.
+handle_errors {
+	rewrite * /404.html
+	file_server {
+		status {err.status_code}
+	}
+}
